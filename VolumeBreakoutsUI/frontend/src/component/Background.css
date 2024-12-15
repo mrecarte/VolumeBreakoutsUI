@@ -1,0 +1,64 @@
+/* Adjust padding to account for navbar height */
+.background-container {
+    background-image: url('/background.png'); /* Background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    min-height: 100vh; /* Use min-height instead of height */
+    overflow-y: auto; /* Enable scrolling for long content */
+    padding: 2rem; /* General padding */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; /* Ensures padding is included in the height */
+  }
+  
+  .content-wrapper {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 5rem; /* Add margin to account for the navbar height */
+  }
+  
+  .background-heading {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .sub-heading {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+  
+  .background-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+  
+  .background-list li {
+    margin-bottom: 1rem;
+  }
+  
+  .background-list li::before {
+    content: '•'; /* Add a bullet point */
+    color: #00c4ff;
+    font-weight: bold;
+    display: inline-block;
+    width: 1rem;
+    margin-right: 0.5rem;
+  }
+  
