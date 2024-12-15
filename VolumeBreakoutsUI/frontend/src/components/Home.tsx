@@ -1,4 +1,3 @@
-import React from 'react';
 import './Home.css'; // We'll create a new CSS file for the Home page
 
 const Home = () => {
