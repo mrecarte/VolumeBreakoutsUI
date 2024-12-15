@@ -17,13 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponse
-
-# Optional: Create a simple view for the root path
-def home(request):
-    return HttpResponse("Welcome to Volume Breakouts!")
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),  # Ensure 'api.urls' is correctly configured.
-    path('', home, name='home'),  # Add this to handle the root path
+    path('', TemplateView.as_view(template_name='index.html')),
 ]
