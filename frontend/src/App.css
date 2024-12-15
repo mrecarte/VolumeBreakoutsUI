@@ -1,0 +1,51 @@
+/* General Reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-image: url('/path-to-your-background-image.png'); /* Update with the actual path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Ensures it remains fixed during scrolling */
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Space out the logo and nav links */
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Center the entire navbar */
+.nav-links {
+  flex-grow: 1; /* Ensures this section takes up available space */
+  display: flex;
+  justify-content: center; /* Center navigation links inside this space */
+  gap: 20px; /* Space between each link */
+}
+
+/* Style for the logo */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: auto; /* Push the logo to the far left */
+}
+
+/* Styling for the navigation links */
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #00c4ff;
+}
