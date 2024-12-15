@@ -1,4 +1,3 @@
-import React from 'react';
 import './Background.css'; // Create a CSS file for styling this page
 
 const Background = () => {
