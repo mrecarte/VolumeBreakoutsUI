@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 
-# Base directory is VolumeBreakoutsUI/backend
+# Base directory is VolumeBreakoutsUI/VolumeBreakoutsUI/backend
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-^(bk4e_!-zw8@nozmqyfvv$(j9piko_$dn=85f&(4rv^4o5(zy')
@@ -28,6 +28,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # Add WhiteNoise middleware after SecurityMiddleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -42,7 +44,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # Note: We go up one directory (..), then into frontend/dist
+        # This points to dist directory containing index.html
         'DIRS': [os.path.join(BASE_DIR, '..', 'frontend', 'dist')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -77,10 +79,14 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files
-STATIC_URL = '/static/'
-# Again, note the '..' to go up one directory to access frontend/dist/static
-STATICFILES_DIRS = [os.path.join(BASE_DIR, '..', 'frontend', 'dist', 'static')]
+# Serve static files from dist directory. 
+# The built assets from Vite are typically in dist/assets/.
+# We'll serve them at /assets/ directly, since index.html references them that way.
+STATIC_URL = '/assets/'
+STATICFILES_DIRS = [
+    # Include the entire dist directory so that assets/ is available.
+    os.path.join(BASE_DIR, '..', 'frontend', 'dist')
+]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -97,4 +103,7 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_SSL_REDIRECT = True
     X_FRAME_OPTIONS = 'DENY'
+    # Use WhiteNoise’s compressed static files storage in production
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
