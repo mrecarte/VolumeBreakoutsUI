@@ -18,13 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),  # Ensure 'api.urls' exists and is configured.
-    path('', TemplateView.as_view(template_name='index.html')),  # Serve frontend for the root path.
+    path('api/', include('api.urls')),
+    # Serve the frontend app for the root URL
+    path('', TemplateView.as_view(template_name='index.html')),
 ]
 
-if settings.DEBUG:  # Only serve static files through Django in development
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# Note: We do not need to use `static()` here in production since WhiteNoise handles static files.
+# If DEBUG is True locally, Django will still serve static files. WhiteNoise can also handle dev.
+
